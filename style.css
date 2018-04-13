@@ -1,0 +1,28 @@
+#divHeadBox {
+  display: flex;
+  align-items: center;
+}
+#monthYear {
+  margin: 0 20px;
+}
+
+#tableCalendar {
+  /*width: 500px;
+  height: 40px;*/
+  border: 1px solid green;
+  /*border-collapse: collapse;*/
+}
+.thCell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid gray;
+}
+.trNew {
+  width: 20px;
+  height: 20px;
+  border: 1px solid blue;
+}
+
+td {
+  border: 2px solid black;
+}

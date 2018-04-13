@@ -66,39 +66,21 @@ function divload() {
 }
 //table
 function tableLoad() {
-  let tableCalendar = document.createElement('table');
-  tableCalendar.setAttribute('id', 'tableCalendar');
+  let tableCalendar = document.createElement('div');
+  tableCalendar.setAttribute('id', 'divCalendar');
   container.appendChild(tableCalendar);
 
-  let tr = document.createElement('tr');
-  tr.setAttribute('class', 'tr');
-  tableCalendar.appendChild(tr);
-  //weekdays 7!
-  for (let i = 0; i < 7; i++) {
-    let thCell = document.createElement('th');
-    thCell.setAttribute('class', 'thCell');
-    thCell.innerHTML = weekdays[i];
-    tr.appendChild(thCell);
-  };
-
-  let tr2 = document.createElement('tr');
-  tr2.setAttribute('class', 'tr2');
-  tableCalendar.appendChild(tr2);
-
-  for (var j = 1; j < days[date.getMonth()+1]; j++) {
-        let tdCell = document.createElement('td');
-    tdCell.setAttribute('class', 'tdCell');
-    tdCell.innerHTML = j;
-    tr2.appendChild(tdCell);
-
+  for (let i = 1; i < days[date.getMonth()+1]; i++) {
+    let divCell = document.createElement('div');
+    divCell.setAttribute('class', 'divCell');
+    divCell.innerHTML = i;
+    divCalendar.appendChild(divCell);
   }
 
 }
 
 
 // если кратно 7 то создает новый тр(строку) + 7 тд(ячеек) и опять
-
-
 // вывести год месяц-дни,, проверка на февраль
 //months[date.getMonth()] "April"
 //for (var i = 1; i < days[date.getMonth() +1]; i++) {console.log(i)}

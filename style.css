@@ -1,28 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#container {
+  width: 500px;
+  height: 320px;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Calendar {
+  width: 500px;
+}
+
 #divHeadBox {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 #monthYear {
   margin: 0 20px;
 }
 
-#tableCalendar {
-  /*width: 500px;
-  height: 40px;*/
-  border: 1px solid green;
-  /*border-collapse: collapse;*/
-}
-.thCell {
-  width: 20px;
-  height: 20px;
-  border: 1px solid gray;
-}
-.trNew {
-  width: 20px;
-  height: 20px;
-  border: 1px solid blue;
+#divCalendar {
+  width: 400px;
+  height: 200px;
+  /*border: 1px solid gray;*/
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-td {
-  border: 2px solid black;
+.divCell {
+  width: 14%;
+  text-align: center;
 }

@@ -5,21 +5,31 @@
 }
 
 #container {
+  width: 700px;
+  display: flex;
+
+}
+#space {
   width: 500px;
-  height: 320px;
+  height: 398px;
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#menu, #log {
+  width: 200px;
+  height: 400px;
+  background-color: lightgray;
+}
 #Calendar {
   width: 500px;
 }
 
 #divHeadBox {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 #monthYear {
@@ -36,7 +46,7 @@
   flex-wrap: wrap;
 }
 
-.divCell {
-  width: 14%;
+.divDayweek, .divEmptyCell, .divCell  {
+  width: 13%;
   text-align: center;
 }

@@ -17,18 +17,12 @@ const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 let days = ["31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
 
-
-//current date
-//////////////////////////change firstDay.getDay()
-
-
 export {
   date,
   options,
   weekdays,
   months,
   days,
-  
   year,
   thisDay
 };

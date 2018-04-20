@@ -1,10 +1,41 @@
 * {
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
-#container {
+#constainer {
+  width: 700px;
+	display: flex;
+}
+
+#space, #log {
+	width: 400px;
+	height: 400px;
+	border: 1px solid gray;
+}
+#choosedMonth, #monthIs {
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+#buttonLeft, #buttonRight {
+  width: 30px;
+}
+
+#weekdaysName, #daysMonth {
+	display: flex;
+	text-align: center;
+	flex-wrap: wrap;
+
+}
+
+.divWeekday, .divEmptyDay, .divDay {
+	width: 13%;
+	height: 30px;
+	border: 1px solid gray;
+}
+
+/*#container {
   width: 700px;
   display: flex;
 
@@ -39,7 +70,7 @@
 #divCalendar {
   width: 400px;
   height: 200px;
-  /*border: 1px solid gray;*/
+  border: 1px solid gray;
   margin-top: 20px;
   display: flex;
   align-items: center;
@@ -50,3 +81,4 @@
   width: 13%;
   text-align: center;
 }
+*/

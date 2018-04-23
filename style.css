@@ -1,84 +1,108 @@
-* {
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400');
+
+ /* @font-face {
+  font-family: Oxygen;
+  src: url(fonts/oxygen.ttf);
+  } */
+  /*colors
+  #448aff blue accent-2  -- button*/
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: 'oxygen', 'Arial', sans-serif;
+    /* font-family: 'Oxygen', sans-serif; */
+  }
+  body {
+    background: url('img/bg.jpg');
+    background-size: cover;
+    background-position: 50%;
+    background-attachment: fixed;
+  }
+
+#constainerSpaceLog {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+h1 {
   margin: 0;
-  padding: 0;
+}
+  #space, #log {
+    width: 400px;
+    height: 440px;
+  }
+  #space {
+    background: rgb(74, 80, 98, 0.9);
+  }
+  #log {
+    background: rgb(255, 255, 255, 0.9);
+  }
+  h1, #todayIs, #monthIs, #buttonLeft, #showLog {
+    margin-left: 10px;
+  }
+  #todayIs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  #choosedMonth, #monthIs {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+ #weekdaysName, #daysMonth {
+    display: flex;
+    text-align: center;
+    line-height: 240%;
+    flex-wrap: wrap;
+  }
+  .divWeekday, .divEmptyDay, .divDay, .divEmptyDay2 {
+    width: 13%;
+    height: 40px;
+    margin: auto;
+  }
+  .divDay:hover {
+    background-color: rgb(60, 131, 249, 0.6);
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .divDay:active {
+    background-color: rgb(60, 131, 249, 0.4);
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  @media (max-width: 800px) {
+  }
+nav {
+  background-color: white;
+  /* opacity: 0.2; */
+  width: 50px;
+  /* height: 50px; */
+}
+.background {
+  background-color: #448aff;
+  /* width: 60px; */
+}
+.circle {
+  width: 50px;
+  height: 50px;
 }
 
-#constainer {
-  width: 700px;
-	display: flex;
-}
-
-#space, #log {
-	width: 400px;
-	height: 400px;
-	border: 1px solid gray;
-}
-#choosedMonth, #monthIs {
-	display: inline-block;
-	margin-bottom: 20px;
-}
-
-#buttonLeft, #buttonRight {
-  width: 30px;
-}
-
-#weekdaysName, #daysMonth {
-	display: flex;
-	text-align: center;
-	flex-wrap: wrap;
-
-}
-
-.divWeekday, .divEmptyDay, .divDay {
-	width: 13%;
-	height: 30px;
-	border: 1px solid gray;
-}
-
-/*#container {
-  width: 700px;
+#header {
+  height: 64px;
+  background-color: #039be5;
   display: flex;
+  justify-content: space-between;
 
 }
-#space {
-  width: 500px;
-  height: 398px;
-  border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#menu, #log {
-  width: 200px;
-  height: 400px;
-  background-color: lightgray;
-}
-#Calendar {
-  width: 500px;
-}
-
-#divHeadBox {
+#userBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-#monthYear {
-  margin: 0 20px;
+#userBar > a {
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-#divCalendar {
-  width: 400px;
-  height: 200px;
-  border: 1px solid gray;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+#menu {
+  color: black;
+  background-color: none;
 }
-
-.divDayweek, .divEmptyCell, .divCell  {
-  width: 13%;
-  text-align: center;
-}
-*/

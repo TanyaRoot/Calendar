@@ -1,75 +1,92 @@
-import { date, options, weekdays, days, months} from "./scripts/mains";
+import {
+  date,
+  options,
+  weekdays,
+  days,
+  months
+} from "./scripts/mains";
+
 let actualDate = new Date();
 
 //1! при загрузке страницы выдает
 window.onload = function() {
-	loadSomeBlocks (); //загружает несменные блоки, но с обновляшками
-	loadBlocks(new Date()); //прогружает с новой датой; 1 - актуальная, 2 - смена
-	changeMonth(); //смена месяца
+  loadSomeBlocks(); //загружает несменные блоки, но с обновляшками
+  loadBlocks(new Date()); //прогружает с новой датой; 1 - актуальная, 2 - смена
+  changeMonth(); //смена месяца
   showToday(); //подсветка текущего  дня месяца
   daysMonth.addEventListener('click', chooseDayForLog, false); // прослушка по клику добавляет
   daysMonth.addEventListener('contextmenu', chooseDayDelLog, false); // прослушка по 2клику убивает
 }
 
-function loadSomeBlocks () {
-	//1. строка с текущей датой при загрузке календаря
-	document.getElementById('todayIs').innerHTML =
-		'<p>Today is ' + actualDate.toLocaleString("en", options) + '</p>';
-	//2. добавляет или заменяет строчку месяц actualDate
-	document.getElementById('monthIs').innerHTML =
-		'<span>' + months[actualDate.getMonth()] +'</span>';
+function loadSomeBlocks() {
+  var elem = document.querySelector('.sidenav');
+  var instance = M.Sidenav.init(elem, options);
+  //1. строка с текущей датой при загрузке календаря
+  document.getElementById('todayIs').innerHTML =
+    '<p>Today is ' + actualDate.toLocaleString("en", options) + '</p>';
+  //2. добавляет или заменяет строчку месяц actualDate
+  document.getElementById('monthIs').innerHTML = months[actualDate.getMonth()];
 }
 //todayIs curr, weekday names
 function loadBlocks(actualDate) {
-	//создаем див daysLoad в space
-	let daysLoad = document.createElement('div');
-	daysLoad.setAttribute('id', 'daysLoad');
+	//3. получаем день недели первого числа месяца
+  let firstDay = new Date(actualDate.getFullYear(), actualDate.getMonth(), 1);
+  let lastDay = new Date(actualDate.getFullYear(), actualDate.getMonth() + 1, 0);
+  // console.log('firstDay', firstDay);
+  // console.log('lastDay', lastDay);
+
+  //создаем див daysLoad в space
+  let daysLoad = document.createElement('div');
+  daysLoad.setAttribute('id', 'daysLoad');
+    //создаем див weekdaysName в daysLoad
+  let weekdaysName = document.createElement('div');
+  weekdaysName.setAttribute('id', 'weekdaysName');
+    //создаем див daysMonth в daysLoad
+  let daysMonth = document.createElement('div');
+  daysMonth.setAttribute('id', 'daysMonth');
+	////////////
 	space.appendChild(daysLoad);
-	//создаем див weekdaysName в daysLoad
-	let weekdaysName = document.createElement('div');
-	weekdaysName.setAttribute('id', 'weekdaysName');
 	daysLoad.appendChild(weekdaysName);
-	//создаем див daysMonth в daysLoad
-	let daysMonth = document.createElement('div');
-	daysMonth.setAttribute('id', 'daysMonth');
 	daysLoad.appendChild(daysMonth);
 
-	//2. прогружаем имена дней недели из массива weekdays
-	for (let i = 0; i < weekdays.length; i++) {
-		let divWeekday = document.createElement('div');
-		divWeekday.setAttribute('class','divWeekday');
-		divWeekday.innerHTML = weekdays[i];
-		weekdaysName.appendChild(divWeekday);
-	}
+  //2. прогружаем имена дней недели из массива weekdays
+  for (let i = 0; i < weekdays.length; i++) {
+    let divWeekday = document.createElement('div');
+    divWeekday.setAttribute('class', 'divWeekday');
+    divWeekday.innerHTML = weekdays[i];
+    weekdaysName.appendChild(divWeekday);
+  }
+  //3.1 добавляем пустые ячейки в начало месяца, если начало недели пн-сб
+  for (let j = 0; j < firstDay.getDay() - 1; j++) { // -1 т.к. количество пустых ячеек нужно
+    let divEmptyDay = document.createElement('div');
+    divEmptyDay.setAttribute('class', 'divEmptyDay');
+    divEmptyDay.innerHTML = ""; //добавляем пустые ячейки
+    daysMonth.appendChild(divEmptyDay);
+  }
+  //3.2 добавляем пустые ячейки в начало месяца, если начало недели воскресение
+  if (firstDay.getDay() === 0) {
+    for (let j = 0; j < 6; j++) { //date
+      let divEmptyDay = document.createElement('div');
+      divEmptyDay.setAttribute('class', 'divEmptyDay');
+      divEmptyDay.innerHTML = ""; //добавляем пустые ячейки
+      daysMonth.appendChild(divEmptyDay);
+    }
+  }
+  //4. прогружаем числа месяца из массива days
+  for (let i = 0; i < days[actualDate.getMonth()]; i++) { //перебирает числа из days
+    let divDay = document.createElement('div');
+    divDay.setAttribute('class', 'divDay');
+    divDay.innerHTML = i + 1; //выгружает числа типа 0+1 чётенько
+    daysMonth.appendChild(divDay);
+  }
+  // 3.3 добавление пустых ячеек в конец месяца
+  //  for (let j = 0; j < lastDay; j++) { // -1 т.к. количество пустых ячеек нужно
+  //   let divEmptyDay2 = document.createElement('div');
+  //   divEmptyDay2.setAttribute('class', 'divEmptyDay2');
+  //   divEmptyDay2.innerHTML = "_"; //добавляем пустые ячейки
+  //   daysMonth.appendChild(divEmptyDay2);
+  // }
 
-	//3. получаем день недели первого числа месяца
-	let firstDay = new Date(actualDate.getFullYear(), actualDate.getMonth(), 1);
-
-	//3.1 добавляем пустые ячейки в начало месяца, если начало недели пн-сб
-	for (let j = 0; j < firstDay.getDay()-1; j++) { // -1 т.к. количество пустых ячеек нужно
-		let divEmptyDay = document.createElement('div');
-		divEmptyDay.setAttribute('class', 'divEmptyDay');
-		divEmptyDay.innerHTML = ""; //добавляем пустые ячейки
-		daysMonth.appendChild(divEmptyDay);
-	}
-
-	//3.2 добавляем пустые ячейки в начало месяца, если начало недели воскресение
-	if (firstDay.getDay() === 0) {
-		for (let j = 0; j < 6; j++) { //date
-		let divEmptyDay = document.createElement('div');
-		divEmptyDay.setAttribute('class', 'divEmptyDay');
-		divEmptyDay.innerHTML = ""; //добавляем пустые ячейки
-		daysMonth.appendChild(divEmptyDay);
-		}
-	}
-
-	//4. прогружаем числа месяца из массива days
-	for (let i = 0; i < days[actualDate.getMonth()]; i++) { //перебирает числа из days
-		let divDay = document.createElement('div');
-		divDay.setAttribute('class', 'divDay');
-		divDay.innerHTML = i + 1; //выгружает числа типа 0+1 чётенько
-		daysMonth.appendChild(divDay);
-	}
 }
 //подсветка текущего дня месяца
 function showToday() {
@@ -77,36 +94,35 @@ function showToday() {
   let actMonth = actualDate.getMonth();
   let actYear = actualDate.getYear();
   let chooseThisDay = [].slice.call(document.getElementsByClassName("divDay"));
-  if (actMonth === date.getMonth() & actYear === date.getYear() ) {  // сравнение с текущим месяцем и годом
+  if (actMonth === date.getMonth() & actYear === date.getYear()) { // сравнение с текущим месяцем и годом
     chooseThisDay.forEach(function(item, i) {
       if (+item.innerHTML === todayDay) {
-         chooseThisDay[todayDay - 1].style = "border: 1px solid red; border-radius: 20px; background-color: #f7f8f9; font-weight: bold";
+        chooseThisDay[todayDay - 1].style = "border: 1px solid rgb(250, 218, 60,0.9); border-radius: 20px; font-weight: bold";
       }
     });
   }
 }
 //смена месяца по кнопкам, +, -
 function changeMonth() {
-	//смена месяца по клинку на левую кнопку
-	document.getElementById('buttonLeft').addEventListener('click', function() {
-		actualDate.setMonth(actualDate.getMonth()-1); //уменьшение месяца
-		document.getElementById('monthIs').innerHTML =
-			'<span>' + months[actualDate.getMonth()] + '</span>'; //изменение строки monthIs
-		let delDiv = document.getElementById("daysLoad");
-		delDiv.parentNode.removeChild(delDiv); //удаляем див daysLoad
-		loadBlocks(actualDate); //передаем на перезагрузку архумент с новым месяцем именно actualDate
-    showToday();//подсветка текущего  дня месяца
+  //смена месяца по клинку на левую кнопку
+  document.getElementById('buttonLeft').addEventListener('click', function() {
+    actualDate.setMonth(actualDate.getMonth() - 1); //уменьшение месяца
+    document.getElementById('monthIs').innerHTML = months[actualDate.getMonth()]; //изменение строки monthIs
+    let delDiv = document.getElementById("daysLoad");
+    delDiv.parentNode.removeChild(delDiv); //удаляем див daysLoad
+    loadBlocks(actualDate); //передаем на перезагрузку архумент с новым месяцем именно actualDate
+    //////?////showToday();//подсветка текущего  дня месяца
     chooseDayForLog(actualDate);
   })
-	//смена месяца по клинку на правую кнопку
-	document.getElementById('buttonRight').addEventListener('click', function() {
-		actualDate.setMonth(actualDate.getMonth()+1); //увеличение месяца
-		document.getElementById('monthIs').innerHTML =
-			'<span>' + months[actualDate.getMonth()] + '</span>'; //изменение строки monthIs
-		let delDiv = document.getElementById("daysLoad");
-		delDiv.parentNode.removeChild(delDiv); //удаляем див daysLoad
-		loadBlocks(actualDate); //передаем на перезагрузку архумент с новым месяцем именно actualDate
-    showToday();//подсветка текущего  дня месяца
+  //смена месяца по клинку на правую кнопку
+  document.getElementById('buttonRight').addEventListener('click', function() {
+    actualDate.setMonth(actualDate.getMonth() + 1); //увеличение месяца
+    document.getElementById('monthIs').innerHTML =
+      '<span>' + months[actualDate.getMonth()] + '</span>'; //изменение строки monthIs
+    let delDiv = document.getElementById("daysLoad");
+    delDiv.parentNode.removeChild(delDiv); //удаляем див daysLoad
+    loadBlocks(actualDate); //передаем на перезагрузку архумент с новым месяцем именно actualDate
+    //////?////showToday();//подсветка текущего  дня месяца
     chooseDayForLog(actualDate);
   })
 };
@@ -119,20 +135,23 @@ window.datasave = datasave
 
 // смена стиля для даты
 function chooseDayForLog(e) {
+
   if (e.target.className === "divDay") {
-    e.target.style = 'background-color: #cee1ff';
-  dateInLog(e); //добавление в массив лога
+    e.target.style = "background-color: rgb(60,131,249,0.6); border: 1px solid rgb(60,131,249,0.9); border-radius: 20px";
+    console.log('nere');
+    dateInLog(e); //добавление в массив лога
+
   }
 }
 //убивает стиль
 function chooseDayDelLog(e) {
   if (e.target.className === "divDay") {
-    document.oncontextmenu = function (){
+    document.oncontextmenu = function() {
       return false
     }
     e.target.style = "none";
     dateDelFromLog(e); //удаление из массива лога
-    showToday();
+    //showToday();
   }
 }
 
@@ -168,18 +187,18 @@ function dateDelFromLog(e) {
 
 //вывод лога в лог-спейс, перезаписывает массив
 function showLog(e) {
-  document.getElementById('showLog').innerHTML = "";//need
+  document.getElementById('showLog').innerHTML = ""; //need
   for (let i = 0; i < datasave.length; i++) {
     let datasaveDiv = document.createElement('div');
     datasaveDiv.setAttribute('class', 'datasaveDiv');
-    // if (datasave[i].getDate().length === 1) {
-    //   console.log('aaaa');
-    // }
+    // if (datasave[i].length === 1) {
+    //    console.log('aaaa');
+    //  }
     //console.log(datasave[i].getDate().);
-    datasaveDiv.innerHTML = datasave[i].getDate()
-                              + "." + datasave[i].getMonth()
-                              + "." + datasave[i].getFullYear();
+    datasaveDiv.innerHTML = datasave[i].getDate() +
+      "." + datasave[i].getMonth() +
+      "." + datasave[i].getFullYear();
     document.getElementById('showLog').appendChild(datasaveDiv);
   }
-      //console.log(datasave);
+  //console.log(datasave);
 }

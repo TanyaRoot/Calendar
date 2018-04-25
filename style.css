@@ -6,37 +6,127 @@
   } */
   /*colors
   #448aff blue accent-2  -- button*/
-  * {
+* {
     margin: 0;
     padding: 0;
     font-family: 'oxygen', 'Arial', sans-serif;
     /* font-family: 'Oxygen', sans-serif; */
-  }
-  body {
-    background: url('img/bg.jpg');
+}
+body {
+    /* background: url('img/bg.jpg');
     background-size: cover;
     background-position: 50%;
-    background-attachment: fixed;
-  }
+    background-attachment: fixed; */
+}
 
-#constainerSpaceLog {
+#header {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background-color: #039be5;
 }
-h1 {
-  margin: 0;
+nav {
+  background-color: transparent;
+  box-shadow: none;
 }
+.sidenav {
+  padding-top: 20px;
+}
+
+#menuFieldActiveFieldName {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+#activeFieldName > a {
+  text-transform: uppercase;
+  color: #eceff1;
+  cursor: pointer;
+}
+#searchField {
+  flex: 1 1 auto;
+  text-align: center;
+  margin: 0 20px;
+}
+#buttonsUserBarField {
+  display: flex;
+  align-items: center;
+  flex-wrap:nowrap;
+  margin: 0 20px;
+}
+#buttonsMenu {
+  white-space: nowrap;
+}
+
+#buttonsMenu > a {
+  color: black;
+  margin: 0 6px;
+  cursor: pointer;
+}
+#userBar > a > img {
+  width: 60px;
+  height: 60px;
+}
+/* #dropdown1.dropdown-content{
+    top: -21px;
+    width: 200px;
+} */
+#dropdown1 {
+  /* color: lightgray; */
+  background-color: white;
+  width: 300px !important;
+  top: 69.5px !important;
+}
+.dropdown_avatar {
+  display: flex;
+}
+
+#dropdown1 .dropdown_avatar > a > img {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+}
+.name_mail {
+  margin: 10px;
+}
+#dropdown1 .waves-effect {
+  color: gray;
+}
+.dropdown_buttons > a {
+    margin: 10px;
+    float: right;
+}
+
+/* activeField */
+
+#activeField {
+  width: 900px;
+  height: 500px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-top: 16px;
+}
+
+  #constainerSpaceLog {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-content: center;
+  }
+  h1 {
+    margin: 0;
+  }
   #space, #log {
     width: 400px;
-    height: 440px;
-  }
-  #space {
-    background: rgb(74, 80, 98, 0.9);
+    height: 460px;
+    background-color: #cfd8dc;
   }
   #log {
-    background: rgb(255, 255, 255, 0.9);
+    overflow: scroll;
   }
+
   h1, #todayIs, #monthIs, #buttonLeft, #showLog {
     margin-left: 10px;
   }
@@ -58,6 +148,7 @@ h1 {
     width: 13%;
     height: 40px;
     margin: auto;
+    margin-bottom: 4px;
   }
   .divDay:hover {
     background-color: rgb(60, 131, 249, 0.6);
@@ -69,40 +160,24 @@ h1 {
     border-radius: 20px;
     cursor: pointer;
   }
-  @media (max-width: 800px) {
+
+
+@media only screen and (min-width: 993px) {
+  #menuField nav a.sidenav-trigger {
+      display: block !important;
   }
-nav {
-  background-color: white;
-  /* opacity: 0.2; */
-  width: 50px;
-  /* height: 50px; */
+  html {
+    font-size: 14px;
 }
-.background {
-  background-color: #448aff;
-  /* width: 60px; */
 }
-.circle {
-  width: 50px;
-  height: 50px;
+@media only screen and (min-width: 1200px) {
+  html {
+      font-size: 14px;
+  }
 }
 
-#header {
-  height: 64px;
-  background-color: #039be5;
-  display: flex;
-  justify-content: space-between;
-
-}
-#userBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#userBar > a {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-#menu {
-  color: black;
-  background-color: none;
+.backStyle {
+  background-color: rgb(60,131,249,0.6);
+  border: 1px solid rgb(60,131,249,0.9);
+  border-radius: 20px;
 }

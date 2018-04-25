@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <link rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css"> -->
-
-
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <title>Calendar</title>
@@ -15,63 +13,101 @@
 </head>
 <body>
 
-<div id="header">
-  <!-- navbar content here  -->
-      <nav>
-      <ul id="slide-out" class="sidenav">
-        <li>
-          <div class="user-view">
-            <div class="background" style="">
-              <!-- <img src="https://ae01.alicdn.com/kf/UT8s49CX70XXXagOFbXf/-.jpg_640x640.jpg"> -->
-            </div>
-            <a href="#user"><img class="circle" src="https://cs5.pikabu.ru/post_img/big/2015/09/04/1/1441320970_1275609053.jpg"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-          </div>
-        </li>
-        <li><a href="#"><i class="material-icons">event</i>Timetable calendar</a></li>
-        <li><a href="#"><i class="material-icons">format_list_bulleted</i>Timetable log</a></li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <!-- <li><a class="subheader">Subheader</a></li> -->
-        <li><a class="waves-effect" href="#">Log out</a></li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" id="menu">menu</i></a>
-    </nav>
+  <!-- контейнер для всего -->
+<div id="box">
 
+  <!-- хедер -->
+  <div id="header" class="z-depth-2">
+    <!-- меню, бургер + выезжающая панелька + имя активного поля - пока календарь-->
+    <div id="menuFieldActiveFieldName">
+      <div id="menuField">
+        <!-- бургер -->
+        <nav>
+          <ul id="slide-out" class="sidenav">
+            <li><a href="#"><i class="material-icons">event</i>Timetable calendar</a></li>
+            <li><a href="#"><i class="material-icons">format_list_bulleted</i>Timetable log</a></li>
+            <li>
+              <div class="divider"></div>
+            </li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" id="menu">menu</i></a>
+        </nav>
 
-      <div id="userBar" class="user-view">
+      </div>
+      <!-- имя активного поля -->
+      <div id="activeFieldName">
+        <a onClick="window.location.reload()">Calendar</a>
+      </div>
+    </div>
+    <!-- поле поиска -->
+    <div id="searchField">
+      <input type="text" size="80%" placeholder="search"></textarea>
+    </div>
+
+    <!-- кнопки-рыбы, юзербар+выезжающее поле -->
+    <div id="buttonsUserBarField">
+      <div id="buttonsMenu">
         <a class="material-icons">flash_on</a>
-        <a href="#user"><img class="circle" src="https://cs5.pikabu.ru/post_img/big/2015/09/04/1/1441320970_1275609053.jpg"></a>
+        <a class="material-icons">flash_on</a>
+        <a class="material-icons">flash_on</a>
+      </div>
+      <!-- юзербар -->
+      <div id="userBar" class="user-view">
+        <a class='dropdown-trigger' href='#' data-target='dropdown1'><img class="circle" src="https://cs5.pikabu.ru/post_img/big/2015/09/04/1/1441320970_1275609053.jpg"></a>
+        <div id='dropdown1' class='dropdown-content'>
+          <!-- avatar, name, mail -->
+          <div class="dropdown_avatar">
+            <a><img class="circle" src="https://cs5.pikabu.ru/post_img/big/2015/09/04/1/1441320970_1275609053.jpg"></a>
+            <div class="name_mail">
+              <p>Rabbit Bo</p>
+              <a href="#">rabbitbo@mail.com</a>
+            </div>
+          </div>
+          <!-- черточка -->
+          <div class="divider"></div>
+          <!-- button, logout -->
+          <div class="dropdown_buttons">
+            <a class="waves-effect blue-grey lighten-5 btn">logout</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- енд оф хедер -->
+
+
+  <!-- активное поле, куда прогружается контент - пока поле с календарем -->
+  <div id="activeField" class="z-depth-2">
+
+    <div id="constainerSpaceLog">
+
+      <div id="space" class="z-depth-1">
+        <h1>Calendar</h1>
+        <p id="todayIs">Today is: </p>
+        <a id="buttonLeft" class="waves-effect waves-light btn-small blue accent-2"><i class="material-icons">navigate_before</i></a>
+        <a id="buttonRight" class="waves-effect waves-light btn-small blue accent-2"><i class="material-icons">navigate_next</i></a>
+
+        <span id="monthIs"></span>
+        <!-- div: daysLoad, weekdaysName, daysMonth
+        divWeekday, divEmptyDay, divDay, divEmptyDay THERE -->
       </div>
 
-</div>
+      <div id="log" class="z-depth-1">
+        <h1>Log</h1>
+        <div id="showLog"></div>
+      </div>
 
-<!-- <div id="constainerBox"> -->
-<div id="constainerSpaceLog">
-  <div id="space">
-    <h1>Calendar</h1>
-    <p id="todayIs">Today is: </p>
-    <a id="buttonLeft" class="waves-effect waves-light btn-small blue accent-2"><i class="material-icons">navigate_before</i></a>
-    <a id="buttonRight" class="waves-effect waves-light btn-small blue accent-2"><i class="material-icons">navigate_next</i></a>
+    </div>
 
-    <span id="monthIs"></span>
   </div>
-
-  <div id="log">
-    <h1>Log</h1>
-    <div id="showLog"></div>
-  </div>
+<!-- енд оф activeField -->
 </div>
-
-
-  <!-- </div> -->
+<!-- енд оф all -->
 
   <!-- <script src="ui.js"></script> -->
   <!-- <script src="script.js"></script> -->
   <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
   <script src="./js/scripts.min.js"></script>
   <!-- <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script> -->
 </body>
